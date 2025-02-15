@@ -38,6 +38,7 @@ jobs:
       - name: Build and Archive
         working-directory: app
         run: |
+          yarn build
           zip -r ${{env.app-name}}.zip dist
 
       - name: Create Release Note
