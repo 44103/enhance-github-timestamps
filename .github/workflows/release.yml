@@ -45,6 +45,7 @@ jobs:
           zip -r ${{env.app-name}}.zip dist
 
       - name: Create Release Note
+        working-directory: app
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
