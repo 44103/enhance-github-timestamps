@@ -1,0 +1,44 @@
+name: Create Release Note
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+env:
+  app-name: github-datetime-formatter
+
+jobs:
+  create-release-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get NPM Version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@main
+        with:
+          path: app
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "yarn"
+
+      - name: Install Dependencies
+        working-directory: app
+        run: |
+          yarn
+
+      - name: Build and Archive
+        working-directory: app
+        run: |
+          zip -r ${{env.app-name}}.zip dist
+
+      - name: Create Release Note
+        run: |
+          gh release create v${{ steps.package-version.outputs.current-version}} --generate-notes ${{env.app-name}}.zip
