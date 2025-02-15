@@ -45,5 +45,7 @@ jobs:
           zip -r ${{env.app-name}}.zip dist
 
       - name: Create Release Note
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
           gh release create v${{ steps.package-version.outputs.current-version}} --generate-notes ${{env.app-name}}.zip
