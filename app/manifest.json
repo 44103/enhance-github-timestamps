@@ -1,6 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "Chrome extension",
+  "name": "GitHub DateTime Formatter",
   "version": "1.0.0",
-  "action": { "default_popup": "index.html" }
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["/src/contents.ts"],
+      "run_at": "document_end"
+    }
+  ]
 }
