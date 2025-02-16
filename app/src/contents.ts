@@ -29,7 +29,7 @@ const replaceRelativeTime = () => {
 
     const parentWidth =
       element.parentElement!.clientWidth -
-      +element.parentElement!.style.paddingLeft.replace("px", "");
+      +getComputedStyle(element.parentElement!).paddingRight.replace("px", "");
 
     for (let size = 14; size > 9 && getWidth(element) > parentWidth; --size)
       element.style.fontSize = `${size}px`;
