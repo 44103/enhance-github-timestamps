@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 env:
-  app-name: github-datetime-formatter
+  app-name: enhance-github-timestamps
 
 jobs:
   create-release-pr:
