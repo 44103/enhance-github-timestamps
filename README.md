@@ -1,4 +1,4 @@
-# GitHub DateTime Formatter
+# Enhance GitHub Timestamps
 
 GitHub displays relative times by default.  
 Options other than the default display method are provided as shown below.
