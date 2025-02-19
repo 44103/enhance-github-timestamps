@@ -38,6 +38,7 @@ const replaceRelativeTime = () => {
 
 const setDecoration = (element: HTMLElement, color: string) => {
   element.style.textDecorationColor = color;
+  element.style.fontFamily = "monospace";
   element.style.textDecorationLine = "underline";
   element.style.textUnderlineOffset = "3px";
 };

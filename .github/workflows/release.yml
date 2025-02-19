@@ -49,4 +49,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
-          gh release create v${{ steps.package-version.outputs.current-version}} --generate-notes ${{env.app-name}}.zip
+          gh release create v${{steps.package-version.outputs.current-version}} --generate-notes ${{env.app-name}}.zip
