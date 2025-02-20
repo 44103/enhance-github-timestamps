@@ -51,7 +51,7 @@ jobs:
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
         run: |
-          npx chrome-webstore-upload-cli@3 upload --source extension.zip --auto-publish
+          npx chrome-webstore-upload-cli@3 upload --source ${{env.app-name}}.zip --auto-publish
 
       - name: Create Release Note
         working-directory: app
