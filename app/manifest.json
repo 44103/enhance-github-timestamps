@@ -5,7 +5,7 @@
   "content_scripts": [
     {
       "matches": ["https://github.com/*"],
-      "js": ["/src/contents.ts"],
+      "js": ["/src/contents/contents.ts"],
       "run_at": "document_end"
     }
   ]
