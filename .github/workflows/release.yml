@@ -45,13 +45,14 @@ jobs:
           zip -r ${{env.app-name}}.zip dist
 
       - name: Release Application
+        working-directory: app
         env:
           EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
         run: |
-          npx chrome-webstore-upload-cli@3 upload --source extension.zip --auto-publish
+          npx chrome-webstore-upload-cli@3 upload --source ${{env.app-name}}.zip --auto-publish
 
       - name: Create Release Note
         working-directory: app
