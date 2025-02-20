@@ -45,6 +45,7 @@ jobs:
           zip -r ${{env.app-name}}.zip dist
 
       - name: Release Application
+        working-directory: app
         env:
           EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
