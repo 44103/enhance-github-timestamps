@@ -1,7 +1,7 @@
 {
   "name": "enhance-github-timestamps",
   "private": true,
-  "version": "1.1.5",
+  "version": "1.1.6",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.0.0-beta.23",
+    "@types/chrome": "^0.0.306",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
