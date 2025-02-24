@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
-import { Entity } from "../04_domain.layer/entites/shared/Entity";
-import { ContentId } from "../04_domain.layer/entites/ContentId.vo";
-import { Theme } from "../04_domain.layer/entites/Theme.vo";
-import { Timestamp } from "../04_domain.layer/entites/Timestamp.vo";
-import { Page } from "../04_domain.layer/entites/Page.vo";
+import { Entity } from "./shared/Entity";
+import { ContentId } from "./ContentId.vo";
+import { Theme } from "./Theme.vo";
+import { Timestamp } from "./Timestamp.vo";
+import { Page } from "./Page.vo";
 
 export class ContentEntity extends Entity<ContentId> {
   private _id: ContentId;

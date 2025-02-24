@@ -3,9 +3,9 @@ import { ContentPresenter } from "../../02_interface-adapter.layer/presenters/Co
 import { Page } from "../../04_domain.layer/entites/Page.vo";
 import { Theme } from "../../04_domain.layer/entites/Theme.vo";
 import { Timestamp } from "../../04_domain.layer/entites/Timestamp.vo";
-import { ContentEntity } from "../../contents/ContentEntity";
 import { ContentInputData } from "../input.data/Content.id";
 import { InputPort } from "../input.boundary/InputPort";
+import { ContentEntity } from "../../04_domain.layer/entites/ContentEntity";
 
 export class AbsoluteTimeInteractor extends InputPort<ContentInputData, void> {
   public async execute(input: ContentInputData): Promise<void> {
