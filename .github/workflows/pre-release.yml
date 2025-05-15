@@ -1,11 +1,11 @@
-name: Create Release Note
+name: Create Pre-Release Note
 
 on:
   pull_request:
     types:
       - closed
     branches:
-      - release
+      - main
 
 permissions:
   contents: write
@@ -44,19 +44,13 @@ jobs:
           yarn build
           zip -r ${{env.app-name}}.zip dist
 
-      - name: Release Application
-        working-directory: app
-        env:
-          EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
-        run: |
-          npx chrome-webstore-upload-cli@3 upload --source ${{env.app-name}}.zip --auto-publish
-
-      - name: Create Release Note
+      - name: Create Pre-Release Note
         working-directory: app
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
-          gh release create v${{steps.package-version.outputs.current-version}} --generate-notes ${{env.app-name}}.zip
+          gh release create \
+            v${{steps.package-version.outputs.current-version}}-alpha \
+            --generate-notes \
+            --latest=false \
+            ${{env.app-name}}.zip
