@@ -25,7 +25,7 @@ export class ContentPresenter extends OutputPort<ConentOutputData, void> {
     const { element, theme, page, timestamp, age, timezone } = output;
     // text
     const dayjsInstance = timezone === "utc" ? dayjs(timestamp).utc() : dayjs(timestamp);
-    const timezoneLabel = timezone === "utc" ? " UTC" : "";
+    const timezoneLabel = timezone === "utc" ? "Z" : "";
     element.shadowRoot!.innerHTML = dayjsInstance.format("YYYY-MM-DD HH:mm") + timezoneLabel;
 
     // color
