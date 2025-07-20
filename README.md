@@ -7,6 +7,7 @@ Key Features
 - Absolute Timestamps: Converts relative time references to precise date and time for commits, pull requests, and other events.
 - Visual Highlighting: Adds colored underlines to new timestamps, making them easily distinguishable.
 - Customizable Formats: (Planned) Offers multiple date and time formats to suit your preferences.
+- Timezone Selection: Choose between local time and UTC for displaying absolute timestamps.
 
 Benefits
 
