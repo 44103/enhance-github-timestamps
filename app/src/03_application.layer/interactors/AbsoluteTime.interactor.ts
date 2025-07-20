@@ -6,9 +6,12 @@ import { Timestamp } from "../../04_domain.layer/entites/Timestamp.vo";
 import { ContentInputData } from "../input.data/Content.id";
 import { InputPort } from "../input.boundary/InputPort";
 import { ContentEntity } from "../../04_domain.layer/entites/ContentEntity";
+import { SettingsService } from "../services/SettingsService";
 
 export class AbsoluteTimeInteractor extends InputPort<ContentInputData, void> {
   public async execute(input: ContentInputData): Promise<void> {
+    const settings = await SettingsService.getSettings();
+    
     const content = new ContentEntity({
       theme: new Theme(input.theme ?? "light"),
     });
@@ -37,6 +40,7 @@ export class AbsoluteTimeInteractor extends InputPort<ContentInputData, void> {
       page: content.page.value,
       timestamp: content.timestamp.value,
       age,
+      timezone: settings.timezone,
     });
   }
 }
