@@ -1,6 +1,9 @@
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 import { OutputPort } from "../../03_application.layer/output.boundary/OutputPort";
 import { ConentOutputData } from "../../03_application.layer/output.data/Content.od";
+
+dayjs.extend(utc);
 
 export class ContentPresenter extends OutputPort<ConentOutputData, void> {
   private static lightColors = [
@@ -19,9 +22,10 @@ export class ContentPresenter extends OutputPort<ConentOutputData, void> {
   ];
 
   present(output: ConentOutputData): void {
-    const { element, theme, page, timestamp, age } = output;
+    const { element, theme, page, timestamp, age, timezone } = output;
     // text
-    element.shadowRoot!.innerHTML = dayjs(timestamp).format("YYYY-MM-DD HH:mm");
+    const dayjsInstance = timezone === "utc" ? dayjs(timestamp).utc() : dayjs(timestamp);
+    element.shadowRoot!.innerHTML = dayjsInstance.format("YYYY-MM-DD HH:mm");
 
     // color
     const colors =
