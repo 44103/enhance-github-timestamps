@@ -5,8 +5,10 @@ const theme = document.querySelector("html")?.getAttribute("data-color-mode");
 const useCase = new AbsoluteTimeInteractor();
 
 const observers: MutationObserver[] = [];
-const observeOption = {
+const observeOption: MutationObserverInit = {
   attributes: true,
+  childList: true,
+  subtree: true,
 };
 
 const controller = () => {
@@ -25,6 +27,9 @@ const controller = () => {
     observers.push(observer);
   });
 };
+
+// Initial execution
+controller();
 
 chrome.runtime.onMessage.addListener((_message, _sender, sendResponse) => {
   while (observers.length !== 0) observers.pop()?.disconnect();
