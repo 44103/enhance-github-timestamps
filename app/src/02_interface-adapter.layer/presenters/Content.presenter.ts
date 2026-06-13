@@ -24,8 +24,11 @@ export class ContentPresenter extends OutputPort<ConentOutputData, void> {
   present(output: ConentOutputData): void {
     const { element, theme, page, timestamp, age, timezone } = output;
     // text
-    const dayjsInstance = timezone === "utc" ? dayjs(timestamp).utc() : dayjs(timestamp);
-    element.shadowRoot!.innerHTML = dayjsInstance.format("YYYY-MM-DD HH:mm");
+    const dayjsInstance =
+      timezone === "utc" ? dayjs(timestamp).utc() : dayjs(timestamp);
+    const formatted = dayjsInstance.format("YYYY-MM-DD HH:mm");
+    if (element.shadowRoot) element.shadowRoot.innerHTML = formatted;
+    else element.textContent = formatted;
 
     // color
     const colors =
@@ -71,13 +74,13 @@ export class ContentPresenter extends OutputPort<ConentOutputData, void> {
 
   private getCommitPadding(element: HTMLElement): number {
     return Number(
-      getComputedStyle(element.parentElement!).paddingRight.replace("px", "")
+      getComputedStyle(element.parentElement!).paddingRight.replace("px", ""),
     );
   }
 
   private getBlamePadding(element: HTMLElement): number {
     return Number(
-      getComputedStyle(element.parentElement!).paddingLeft.replace("px", "")
+      getComputedStyle(element.parentElement!).paddingLeft.replace("px", ""),
     );
   }
 
@@ -85,7 +88,8 @@ export class ContentPresenter extends OutputPort<ConentOutputData, void> {
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
     context!.font = getComputedStyle(element).font;
-    return context!.measureText(element.shadowRoot!.innerHTML).width;
+    const text = element.shadowRoot?.textContent ?? element.textContent ?? "";
+    return context!.measureText(text).width;
   }
 
   private ajustFontSize(element: HTMLElement, padding: number): void {
